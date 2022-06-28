@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block main %}
+<form action="/register" method="post" class="container lg:pt-[20vh] pt-[5vh] text-center mx-auto">
+    <div class="mb-3">
+        <input type="text" autocomplete="off" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="username" placeholder="Username">
+    </div>
+    <div class="mb-3">
+        <input type="password" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="password" placeholder="Password">
+    </div>
+    <div class="mb-3">
+        <input type="password" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="confirmation" placeholder="Confirm password">
+    </div>
+    <button class="btn btn-primary text-2xl py-3 px-9 bg-red-500 rounded-full hover:bg-white hover:text-black" type="submit">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<div class="container border-2 rounded-xl border-rose-600 flex justify-center mx-auto my-4 w-[95vw] md:w-[40vw] lg:w-[25vw]">
+    <img src="../static/avatar.jpg" alt="" class="container object-scale-down lg:w-[10vw] w-[40vw] md:w-[20vw] h-auto p-2">
+    <div class="text-semibold m-2 md:text-left text-center">
+        <div class="text-3xl text-amber-200">
+            {{dataID[1]}}
+        </div>
+        <div class="text-xl mb-2 text-red-100">
+            Registered: {{dataID[3]}}
+        </div>
+        <div>
+            <a href="/change" class="text-md text-red-100 hover:text-red-700">Change Password</a>
+        </div>
+        <div>
+            <a href="/logout" class="text-md text-red-100 hover:text-red-700">Logout</a>
+        </div>
+    </div>
+</div>
+
+{% for item in data %}
+    <div class="container flex flex-row space-x-5 my-5 lg:w-[70vw] w-[95vw] mx-auto bg-gradient-to-l 
+    from-black to-transparent rounded-lg  lg:items-start lg:space-y-0">
+        <a href="https://www.imdb.com/title/{{item.results.id}}">
+             <img src="{{item.results.primaryImage.url}}" onerror="this.src='../static/no_poster.jpg';" 
+             class="container object-scale-down lg:w-[10vw] w-[40vw] md:w-[20vw] sm:w-[30vw] h-auto
+             justify-items-start px-2">
+        </a>
+        <div class="flex-col w-[60vw]">
+            <div class="container flex md:flex-row md:justify-between flex-col text-right md:text-left">
+                <div class="lg:text-4xl md:text-xl text-lg font-bold text-yellow-200 ">
+                    {{item.results.titleText.text}}
+                </div>
+                <div class="md:ml-auto mt-2 md:w-40 font-semibold text-right text-md lg:text-2xl">
+                    Release: {{item.results.releaseYear.year}}
+                </div>
+                <form action="/profile" method="post">
+                    <input type="hidden" id="index" name="index" value="{{item.results.id}}">
+                    <div class="block md:w-[20vw] lg:w-auto text-right">
+                        <a class="text-red-600 text-2xl px-2 mt-1 hover:text-red-400" href="https://www.imdb.com/title/{{item.results.id}}">IMDB</a>
+                            <button class="inline-flex items-center justify-center w-10 h-10 text-indigo-100 
+                            transition-colors duration-150 bg-amber-700 rounded-full focus:shadow-outline 
+                            hover:bg-amber-500 m-1" type="submit" name="unfavor" value="unid">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" 
+                                clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                    </div>
+                </form>
+            </div>
+            <div class="text-sm lg:text-2xl text-right font-mono mb-1 lg:my-3 text-yellow-100">
+                Genres:
+                {% for i in item.results.genres.genres %}
+                    {{i.text}}
+                {% endfor %}
+            </div>
+            <div class="lg:text-left text-center font-serif lg:text-lg text-sm">
+                {% if item.results.plot.plotText %}
+                    {{item.results.plot.plotText.plainText}}
+                    {% else %}
+                        <h1>No description</h1>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
+

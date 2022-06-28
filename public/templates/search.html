@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Movies
+{% endblock %}
+
+{% block main %}
+<form action="/search" method="post" class="container pt-[5vh] flex flex-col items-center mx-auto ">
+    <div class="mb-3">
+        <input type="text" autocomplete="off" class="focus:ring-0 focus:ring-offset-0 form-input text-xl px-4 py-3 rounded-full text-black text-center" 
+        name="keyword" placeholder="Title">
+    </div>
+    <div class="mb-3">
+        <input type="number" min="1900" max="2099" step="1" autocomplete="off" class="px-6 focus:ring-0 focus:ring-offset-0 form-input py-2 rounded-full text-black text-center" 
+        name="year" placeholder="Year">
+    </div>
+    <div class="flex my-5">
+            <input class="shadow-red-500 mx-3 h-6 w-6 focus:ring-0 focus:ring-offset-0 checked:bg-red-500 focus:bg-red-500 hover:bg-red-500" 
+            type="radio" name="Type" value="movie" checked >
+            <label for="Movies">Movies</label>
+            <input class="shadow-red-500 mx-3 h-6 w-6 focus:ring-0 focus:ring-offset-0 checked:bg-red-500 focus:bg-red-500 hover:bg-red-500" 
+            type="radio" name="Type" value="tvSeries">
+            <label for="Series">Series</label>
+    </div>
+    <button class="block p-3 pb-4 px-10 font-semibold text-2xl text-white bg-red-800 rounded-full baseline border-solid
+    hover:bg-white hover:text-black" type="submit">Search
+    </button>
+</form>
+
+    {% for item in data %}
+            <div class="container flex flex-row space-x-5 my-5 lg:w-[70vw] w-[95vw] mx-auto bg-gradient-to-l 
+            from-black to-transparent rounded-lg  lg:items-start lg:space-y-0">
+                <a href="https://www.imdb.com/title/{{item.id}}">
+                    <img src="{{item.primaryImage.url}}" onerror="this.src='../static/no_poster.jpg';" class="container object-scale-down lg:w-[10vw] w-[40vw] md:w-[20vw] sm:w-[30vw] h-auto
+                    justify-items-start px-2">
+                </a>
+                <div class="flex-col w-[60vw]">
+                    <div class="container flex md:flex-row md:justify-between flex-col text-right md:text-left">
+                        <div class="lg:text-4xl md:text-xl text-lg font-bold text-yellow-200 ">
+                            {{item.titleText.text}}
+                        </div>
+                        <div class="md:ml-auto mt-2 md:w-40 font-semibold text-right text-md lg:text-2xl">
+                            Release: {{item.releaseYear.year}}
+                        </div>
+                        <form action="/profile" method="post">
+                            <input type="hidden" id="index" name="index" value="{{item.id}}">
+                            <div class="block md:w-[20vw] lg:w-auto text-right">
+                                <a class="text-red-600 text-2xl px-2 mt-1 hover:text-red-400" href="https://www.imdb.com/title/{{item.id}}">IMDB</a>
+                                <button class="inline-flex items-center justify-center w-10 h-10 text-indigo-100 
+                                    transition-colors duration-150 bg-amber-700 rounded-full focus:shadow-outline 
+                                  hover:bg-amber-500 m-1" type="submit" name="favor" value="id">
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                        <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" 
+                                        clip-rule="evenodd" fill-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-sm lg:text-2xl text-right font-mono mb-1 lg:my-3 text-yellow-100">
+                        Genres:
+                        {% for i in item.genres.genres %}
+                            {{i.text}}
+                        {% endfor %}
+                    </div>
+                    <div class="lg:text-left text-center font-serif lg:text-lg text-sm">
+                        {% if item.plot.plotText %}
+                            {{item.plot.plotText.plainText}}
+                        {% else %}
+                            <h1>No description</h1>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock %}

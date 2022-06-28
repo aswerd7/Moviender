@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width"> 
+
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Moviender: {% block title %}{% endblock %}</title>
+</head>
+    
+<body class="bg-black text-white bg-cinema bg-cover bg-center bg-fixed bg-no-repeat">
+  <!-- Navbar -->
+  <nav class="relative w-full mx-auto p-3 bg-gradient-to-t from-black to-red-700 text-xl">
+    <div class="flex items-center md:justify-end justify-center">
+      <!-- Logo -->
+      <div class="pl-2 md:mr-auto">
+        <a href="/"><img src="../static/Logo.png" alt=""></a>
+      </div>
+      <!-- Menu -->
+      {% if session["user_id"] %}
+      <div class="hidden space-x-12  ml-auto pr-8 text-2xl md:flex">
+        <a href="/profile" class="hover:text-red-700">Profile</a>
+        <a href="/logout" class="hover:text-red-700">Logout</a>
+      </div>
+      {% else %}
+      <div class="hidden space-x-12  ml-auto pr-8 text-2xl md:flex">
+        <a href="/login" class="hover:text-red-700">Login</a>
+        <a href="/register" class="hover:text-red-700">Register</a>
+      </div>
+      {% endif %}
+      <!-- Button -->
+      <a 
+        href="/search" 
+        class="hidden md:block p-3 pb-4 px-9 font-semibold text-2xl text-white bg-black rounded-full baseline hover:bg-white hover:text-black"
+        >Search</a
+      >
+    </div>
+  </nav>
+
+  {% if get_flashed_messages() %}
+  <div class="alert bg-yellow-100 rounded-lg absolute right-0 mx-auto py-5 px-6 text-base text-yellow-700 inline-flex items-center w-[40vw] 
+  alert-dismissible fade show" role="alert">
+    {{ get_flashed_messages() | join(" ") }}
+    <button type="button" class="btn-close box-content w-4 h-4 p-1 ml-auto text-yellow-900 border-none rounded-none 
+    opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 
+    hover:text-yellow-900 hover:opacity-75 hover:no-underline" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+
+  <main class="min-h-[75vh] lg:min-h-[78vh]">
+    {% block main %}{% endblock %}
+  </main>
+
+  <footer class="mb-5 text-center select-none">
+    <h1>© 2022 Connemara</h1>
+</footer>
+
+<script src="../static/index.min.js"></script>
+</body>
+
+</html>

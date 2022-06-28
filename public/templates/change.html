@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block main %}
+<form action="/change" method="post" class="container lg:pt-[20vh] pt-[5vh] text-center mx-auto">
+    <div class="mb-3">
+        <input type="text" autocomplete="off" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="opassword" placeholder="Old Password">
+    </div>
+    <div class="mb-3">
+        <input type="password" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="npassword" placeholder="New Password">
+    </div>
+    <div class="mb-3">
+        <input type="password" autofocus class="form-input px-4 py-3 rounded-full text-black text-center" 
+        name="confirmation" placeholder="Confirm password">
+    </div>
+    <button class="btn btn-primary text-2xl py-3 px-9 bg-red-500 rounded-full hover:bg-white hover:text-black" type="submit">Change</button>
+</form>
+{% endblock %}

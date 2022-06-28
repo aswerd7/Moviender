@@ -27,7 +27,7 @@
     <div class="container flex flex-row space-x-5 my-5 lg:w-[70vw] w-[95vw] mx-auto bg-gradient-to-l 
     from-black to-transparent rounded-lg  lg:items-start lg:space-y-0">
         <a href="https://www.imdb.com/title/{{item.results.id}}">
-             <img src="{{item.results.primaryImage.url}}" onerror="this.src='../static/no_poster.jpg';" 
+             <img src="{{item.results.primaryImage.url}}" loading="lazy" onerror="this.src='../static/no_poster.jpg';" 
              class="container object-scale-down lg:w-[10vw] w-[40vw] md:w-[20vw] sm:w-[30vw] h-auto
              justify-items-start px-2">
         </a>

@@ -3,7 +3,6 @@ import sqlite3
 import re
 import requests
 from flask import Flask, session, redirect, request, render_template, flash
-from flask_restful import Api, Resource, reqparse
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps

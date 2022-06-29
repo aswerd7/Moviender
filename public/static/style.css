@@ -4737,6 +4737,10 @@ textarea.form-control.is-invalid {
 }
 
 @media (min-width: 480px) {
+  .sm\:flex {
+    display: flex;
+  }
+
   .sm\:w-\[30vw\] {
     width: 30vw;
   }
@@ -4805,6 +4809,10 @@ textarea.form-control.is-invalid {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
+  .md\:pr-8 {
+    padding-right: 2rem;
+  }
+
   .md\:text-left {
     text-align: left;
   }
@@ -4817,6 +4825,11 @@ textarea.form-control.is-invalid {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
@@ -4834,6 +4847,10 @@ textarea.form-control.is-invalid {
     min-height: 78vh;
   }
 
+  .lg\:w-\[50vw\] {
+    width: 50vw;
+  }
+
   .lg\:w-\[25vw\] {
     width: 25vw;
   }
@@ -4848,10 +4865,6 @@ textarea.form-control.is-invalid {
 
   .lg\:w-auto {
     width: auto;
-  }
-
-  .lg\:w-\[50vw\] {
-    width: 50vw;
   }
 
   .lg\:items-start {
@@ -4895,10 +4908,6 @@ textarea.form-control.is-invalid {
 }
 
 @media (min-width: 1440px) {
-  .xl\:w-\[30vw\] {
-    width: 30vw;
-  }
-
   .xl\:w-\[40vw\] {
     width: 40vw;
   }

@@ -19,12 +19,12 @@
       </div>
       <!-- Menu -->
       {% if session["user_id"] %}
-      <div class="hidden space-x-12  ml-auto pr-8 text-2xl md:flex">
+      <div class="hidden space-x-12  ml-auto pr-8 text-2xl sm:flex">
         <a href="/profile" class="hover:text-red-700">Profile</a>
         <a href="/logout" class="hover:text-red-700">Logout</a>
       </div>
       {% else %}
-      <div class="hidden space-x-12  ml-auto pr-8 text-2xl md:flex">
+      <div class="hidden space-x-12  ml-auto pr-8 text-2xl sm:flex">
         <a href="/login" class="hover:text-red-700">Login</a>
         <a href="/register" class="hover:text-red-700">Register</a>
       </div>
